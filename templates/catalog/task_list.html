@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="div-row">
+    <div style="width: 20%">
+      <h1>TODO list</h1>
+    </div>
+
+    <div class="div-right">
+      <button class="btn btn-primary"><a href="{% url 'catalog:task_create' %}"
+      ><strong>Add task</strong></a></button>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  {% if task_list %}
+    {% for task in task_list %}
+      <div class="div-row">
+        <div class="div-row" style="width: 50%">
+          <h2 style="margin-right: 10px">{{ task.content }}</h2>
+          {% if task.is_done %}
+            <h2 style="color: green"> Done</h2>
+          {% else %}
+            <h2 style="color: firebrick"> Not done</h2>
+          {% endif %}
+        </div>
+        {% if task.is_done %}
+          <div class="div-right" style="width: 45%">
+            <button class="btn btn-secondary"><strong>Undo</strong></button>
+          </div>
+        {% else %}
+          <div class="div-right" style="width: 45%">
+            <button class="btn btn-success"><a href="{% url 'catalog:task_complete' pk=task.id %}">
+              <strong>Complete</strong>
+            </a></button>
+          </div>
+        {% endif %}
+      </div>
+      <br>
+      <strong>Create at: </strong>{{ task.created_at }}
+      <strong>Deadline at: </strong>{{ task.deadline }}
+      <br>
+      <br>
+      <div class="submit-row">
+        Tags:
+        {% for tag in task.tags.all %}
+          {{ tag.name }}
+        {% endfor %}
+        <button class="btn btn-primary">
+          <a href="{% url 'catalog:task_update' pk=task.id %}"><strong>Update</strong></a>
+        </button>
+        <button class="btn btn-danger"><a href="{% url 'catalog:task_delete' pk=task.id %}"><strong>Delete</strong></a>
+        </button>
+      </div>
+      <hr>
+    {% endfor %}
+  {% else %}
+    <p>There are no task</p>
+  {% endif %}
+
+{% endblock %}

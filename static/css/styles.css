@@ -1,0 +1,29 @@
+body {
+    margin-top: 20px;
+}
+
+.link-to-page {
+    float: right;
+    margin: 0 2px 0 2px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.div-right {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end
+}
+
+.div-row {
+    display: flex;
+}
