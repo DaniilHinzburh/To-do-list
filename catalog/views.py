@@ -35,11 +35,6 @@ class TaskDeleteView(generic.DeleteView):
     success_url = reverse_lazy("catalog:home")
 
 
-
-
-
-
-
 class TagListView(generic.ListView):
     model = Tag
     context_object_name = "tag_list"
@@ -50,15 +45,15 @@ class TagListView(generic.ListView):
 class TagCreateView(generic.CreateView):
     model = Tag
     fields = "__all__"
-    success_url = reverse_lazy("catalog:home")
+    success_url = reverse_lazy("catalog:tag_list")
 
 
 class TagUpdateView(generic.UpdateView):
     model = Tag
     fields = "__all__"
-    success_url = reverse_lazy("catalog:home")
+    success_url = reverse_lazy("catalog:tag_list")
 
 
 class TagDeleteView(generic.DeleteView):
     model = Tag
-    success_url = reverse_lazy("catalog:home")
+    success_url = reverse_lazy("catalog:tag_list")

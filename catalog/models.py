@@ -14,7 +14,7 @@ class Task(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     deadline = models.DateTimeField(null=True, blank=True)
     is_done = models.BooleanField(default=False)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, related_name="tasks")
 
     def __str__(self):
         return self.content
