@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from catalog.views import TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView, complete_task, TagListView, \
+from catalog.views import TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView, CompleteTaskView, TagListView, \
     TagCreateView, TagUpdateView, TagDeleteView
 
 app_name = "catalog"
@@ -28,7 +28,7 @@ urlpatterns = [
     ),
     path(
         "task/<int:pk>/complete",
-        complete_task,
+        CompleteTaskView.as_view(),
         name="task_complete",
     ),
 

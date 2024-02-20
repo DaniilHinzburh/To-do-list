@@ -4,11 +4,13 @@ from django.views import generic, View
 from catalog.models import Tag, Task
 
 
-def complete_task(request, pk):
-    task = Task.objects.get(id=pk)
-    task.is_done = True
-    task.save()
-    return render(request, "catalog/task_list.html", context={"task_list": Task.objects.all()})
+class CompleteTaskView(View):
+    @staticmethod
+    def get(request, pk):
+        task = get_object_or_404(Task, id=pk)
+        task.is_done = True
+        task.save()
+        return redirect('catalog:home')
 
 
 class TaskListView(generic.ListView):
